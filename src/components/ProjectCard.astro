@@ -1,0 +1,74 @@
+---
+const { title, description, tech, github } = Astro.props;
+---
+
+<article class="card">
+  <h2>{title}</h2>
+  <p>{description}</p>
+
+  <div class="tags">
+    {
+      tech.map((item) => (
+        <span class="tag">{item}</span>
+      ))
+    }
+  </div>
+
+  <div class="links">
+    <a href={github} target="_blank">
+      View on GitHub →
+    </a>
+  </div>
+</article>
+
+<style>
+  .card {
+    background: #171923;
+    border: 1px solid #2a2f3a;
+    border-radius: 16px;
+    padding: 1.5rem;
+    transition: transform 0.15s ease, border-color 0.15s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-4px);
+    border-color: #7dd3fc;
+  }
+
+  .card h2 {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    color: #e6e6e6;
+  }
+
+  .card p {
+    color: #9ca3af;
+    line-height: 1.6;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  .tag {
+    background: #222733;
+    border: 1px solid #2a2f3a;
+    border-radius: 999px;
+    padding: 0.35rem 0.75rem;
+    font-size: 0.85rem;
+    color: #e6e6e6;
+  }
+
+  .links {
+    margin-top: 1.5rem;
+  }
+
+  .links a {
+    color: #7dd3fc;
+    text-decoration: none;
+    font-weight: 600;
+  }
+</style>
