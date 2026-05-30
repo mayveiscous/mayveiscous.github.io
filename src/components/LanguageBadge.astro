@@ -1,0 +1,32 @@
+---
+const { name, years, focus } = Astro.props;
+---
+<div class="badge">
+  <span class="badge-name">{name}</span>
+  <span class="badge-detail">{years} · {focus}</span>
+</div>
+
+<style>
+  .badge {
+    background: #171923;
+    border: 1px solid #2a2f3a;
+    border-radius: 10px;
+    padding: 0.5rem 0.85rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    transition: border-color 0.15s ease;
+  }
+  .badge:hover {
+    border-color: #7dd3fc;
+  }
+  .badge-name {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #e6e6e6;
+  }
+  .badge-detail {
+    font-size: 0.75rem;
+    color: #9ca3af;
+  }
+</style>

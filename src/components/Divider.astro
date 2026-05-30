@@ -1,0 +1,17 @@
+---
+const { orientation = "horizontal" } = Astro.props;
+---
+<div class={orientation === "vertical" ? "divider-v" : "divider-h"}></div>
+
+<style>
+  .divider-h {
+    height: 1px;
+    background: #2a2f3a;
+    margin: 1.25rem 0;
+  }
+  .divider-v {
+    width: 1px;
+    background: #2a2f3a;
+    align-self: stretch;
+  }
+</style>
