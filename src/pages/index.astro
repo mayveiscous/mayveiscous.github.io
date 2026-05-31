@@ -4,10 +4,9 @@ import LanguageBadge from "../components/LanguageBadge.astro";
 import ProjectCard from "../components/ProjectCard.astro";
 
 const languages = [
-  { name: "Go",     years: "1 yr", focus: "compilers, VMs, CLI tooling" },
   { name: "Lua",    years: "5 yrs", focus: "game development (ROBLOX), scripting"},
-  { name: "Python", years: "4 yrs", focus: "game development (pygame), physics simulations"},
-  { name: "C++", years: "2 yrs", focus: "astrophyiscs simulations"},
+  { name: "Python", years: "4 yrs", focus: "physics simulations"},
+  { name: "Go",     years: "1 yr", focus: "compilers, VMs, CLI tooling" },
 ];
 
 const projects = [
@@ -107,6 +106,24 @@ const projects = [
         }
         .left { position: static; }
         .projects-grid { grid-template-columns: 1fr; }
+      }
+      /* hover flash fix — scoped styles load too late in prod */
+      .card {
+        background: #171923;
+        border: 1px solid #2a2f3a;
+        border-radius: 16px;
+        transition: transform 0.15s ease, border-color 0.15s ease;
+      }
+      .card:hover {
+        transform: translateY(-4px);
+        border-color: #7dd3fc;
+      }
+      .badge {
+        border: 1px solid #2a2f3a;
+        transition: border-color 0.15s ease;
+      }
+      .badge:hover {
+        border-color: #7dd3fc;
       }
     </style>
   </head>
