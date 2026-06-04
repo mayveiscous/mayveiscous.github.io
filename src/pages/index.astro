@@ -1,209 +1,55 @@
 ---
-import Divider from "../components/Divider.astro";
-import LanguageBadge from "../components/LanguageBadge.astro";
+import Layout from "../layouts/Layout.astro";
+import Sidebar from "../components/Sidebar.astro";
 import ProjectCard from "../components/ProjectCard.astro";
+import Divider from "../components/Divider.astro";
 
-const languages = [
-  { name: "Lua",    years: "5 yrs", focus: "game development (ROBLOX), scripting", hoverColor: "#29BEB0"},
-  { name: "Python", years: "4 yrs", focus: "physics simulations", hoverColor: "#29BEB0"},
-  { name: "Go",     years: "1 yr", focus: "compilers, VMs, CLI tooling", hoverColor: "#29BEB0"},
-];
-
-const projects = [
-  {
-    title: "TPU",
-    description: "An 8-bit fantasy CPU and assembler written in Go with custom bytecode, stack operations, and compact instruction encoding.",
-    tech: ["Go", "Assembler", "Virtual Machine"],
-    github: "https://github.com/mayveiscous/TPU",
-    image: undefined,
-    hoverColor: "#29BEB0",
-  },
-  {
-    title: "TCP/IP Server",
-    description: "A terminal-driven, simple TCP/IP chatserver.",
-    tech: ["Go", "TCP/IP", "Networking"],
-    github: "https://github.com/mayveiscous/chatserver",
-    image: undefined,
-    hoverColor: "#29BEB0",
-  },
-  {
-    title: "Tunascript",
-    description: "A Lua-inspired, embeddable scripting language with a custom lexer, Pratt parser, and interpreter runtime.",
-    tech: ["Go", "Pratt Parsing", "Interpreter"],
-    github: "https://github.com/mayveiscous/tunascript",
-    image: undefined,
-    hoverColor: "#29BEB0",
-  },
-];
+import { languages } from "../data/languages";
+import { projects } from "../data/projects";
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>Mayve — Portfolio</title>
-    <style>
-      :root {
-        --bg: #0f1117;
-        --text: #e6e6e6;
-        --muted: #9ca3af;
-      }
-      * { box-sizing: border-box; }
-      body {
-        margin: 0;
-        background: var(--bg);
-        color: var(--text);
-        font-family: Inter, system-ui, sans-serif;
+<Layout title="Mayve — Portfolio">
+  <main class="layout">
+    <Sidebar languages={languages} />
 
-        width: 100%;
-        min-height: 100vh;
-      }
-      main {
-        width: 100vw;
-        min-height: 100vh;
+    <Divider orientation="vertical" />
 
-        padding: 3.5rem 2rem;
+    <section class="right">
+      <div class="projects-grid">
+        {projects.map((p) => (
+          <ProjectCard {...p} />
+        ))}
+      </div>
+    </section>
+  </main>
+</Layout>
 
-        display: grid;
-        grid-template-columns: 260px 1px 1fr;
-        gap: 0 2rem;
-        align-items: start;
-      }
-      .left {
-        position: sticky;
-        top: 3.5rem;
-      }
-      h1 {
-        font-size: 2rem;
-        margin: 0 0 0.35rem;
-      }
-      .subtitle {
-        color: var(--muted);
-        font-size: 0.875rem;
-        line-height: 1.6;
-        margin: 0;
-      }
-      .social-links {
-        display: flex;
-        gap: 0.75rem;
-        margin: 0.85rem 0;
-      }
-      .social-links a {
-        color: #4b5563;
-        transition: color 0.15s ease;
-        display: flex;
-        align-items: center;
-      }
-      .social-links a:hover {
-        color: #e6e6e6;
-      }
-      .social-links svg {
-        width: 18px;
-        height: 18px;
-      }
-      .about {
-        color: var(--muted);
-        font-size: 0.85rem;
-        line-height: 1.7;
-        margin: 0;
-      }
-      .section-label {
-        font-size: 0.7rem;
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-        color: #4b5563;
-        margin: 0 0 0.65rem;
-      }
-      .badges {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-      }
-      .right {
-        min-width: 0;
-      }
-      .projects-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1.25rem;
-      }
-      @media (max-width: 700px) {
-        main {
-          grid-template-columns: 1fr;
-          padding: 2rem 1.25rem;
-        }
-        .left { position: static; }
-        .projects-grid { grid-template-columns: 1fr; }
-      }
-      .card {
-        background: #171923;
-        border: 1px solid #2a2f3a;
-        border-radius: 16px;
-        transition: transform 0.15s ease, border-color 0.15s ease;
-      }
-      .card:hover {
-        transform: translateY(-4px);
-        border-color: #7dd3fc;
-      }
-      .badge {
-        border: 1px solid #2a2f3a;
-        transition: border-color 0.15s ease;
-      }
-      .badge:hover {
-        border-color: #7dd3fc;
-      }
-    </style>
-  </head>
-  <body>
-    <main>
-      <aside class="left">
-        <h1>Mayve</h1>
-        <p class="subtitle">Systems programming, emulators,<br />game development, and low-level tools.</p>
+<style>
+  .layout {
+    width: 100vw;
+    min-height: 100vh;
+    padding: 3.5rem 2rem;
 
-        <div class="social-links">
-          <a href="https://github.com/mayveiscous" target="_blank" rel="noopener" aria-label="GitHub">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.341-3.369-1.341-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
-          </a>
-          <a href="https://instagram.com/mayveiscous" target="_blank" rel="noopener" aria-label="Instagram">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.334 3.608 1.308.975.975 1.246 2.242 1.308 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.334 2.633-1.308 3.608-.975.975-2.242 1.246-3.608 1.308-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.334-3.608-1.308-.975-.975-1.246-2.242-1.308-3.608C2.175 15.584 2.163 15.204 2.163 12s.012-3.584.07-4.85c.062-1.366.334-2.633 1.308-3.608.975-.975 2.242-1.246 3.608-1.308 1.266-.058 1.646-.07 4.85-.07zm0-2.163c-3.259 0-3.667.014-4.947.072-1.699.077-3.296.52-4.431 1.655C1.487 2.863 1.044 4.46.967 6.159.909 7.439.895 7.847.895 12s.014 4.561.072 5.841c.077 1.699.52 3.296 1.655 4.431 1.135 1.135 2.732 1.578 4.431 1.655C8.333 23.986 8.741 24 12 24s3.667-.014 4.947-.072c1.699-.077 3.296-.52 4.431-1.655 1.135-1.135 1.578-2.732 1.655-4.431.058-1.28.072-1.688.072-5.841s-.014-4.561-.072-5.841c-.077-1.699-.52-3.296-1.655-4.431C19.243.567 17.646.124 15.947.047 14.667.014 14.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zm0 10.162a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
-          </a>
-          <a href="mailto:wlevi882@gmail.com" aria-label="Email">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
-          </a>
-        </div>
+    display: grid;
+    grid-template-columns: 260px 1px 1fr;
+    gap: 0 2rem;
+    align-items: start;
+  }
 
-        <Divider />
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
 
-        <p class="about">
-          I build things close to the metal — interpreters, virtual machines,
-          and tools where performance and precision matter.
-        </p>
+  @media (max-width: 700px) {
+    .layout {
+      grid-template-columns: 1fr;
+      padding: 2rem 1.25rem;
+    }
 
-        <Divider />
-
-        <p class="section-label">Languages</p>
-        <div class="badges">
-          {languages.map((lang) => (
-            <LanguageBadge name={lang.name} years={lang.years} focus={lang.focus} />
-          ))}
-        </div>
-      </aside>
-
-      <Divider orientation="vertical" />
-
-      <section class="right">
-        <div class="projects-grid">
-          {projects.map((p) => (
-            <ProjectCard
-              title={p.title}
-              description={p.description}
-              tech={p.tech}
-              github={p.github}
-              image={p.image}
-            />
-          ))}
-        </div>
-      </section>
-    </main>
-  </body>
-</html>
+    .projects-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

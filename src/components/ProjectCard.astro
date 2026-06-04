@@ -1,74 +1,63 @@
 ---
+import Card from "./ui/Card.astro";
+
 const { title, description, tech, github, hoverColor } = Astro.props;
 ---
 
-<article class="card">
-  <h2>{title}</h2>
+<Card hoverColor={hoverColor}>
+  <h3>{title}</h3>
   <p>{description}</p>
 
-  <div class="tags">
-    {
-      tech.map((item) => (
-        <span class="tag">{item}</span>
-      ))
-    }
+  <div class="tech">
+    {tech.map((t) => (
+      <span class="tech-badge">{t}</span>
+    ))}
   </div>
 
-  <div class="links">
-    <a href={github} target="_blank">
-      View on GitHub →
-    </a>
-  </div>
-</article>
+  <a href={github} target="_blank" rel="noopener">
+    GitHub
+  </a>
+</Card>
 
 <style>
-  .card {
-    background: #171923;
-    border: 1px solid #2a2f3a;
-    border-radius: 16px;
-    padding: 1.5rem;
-    transition: transform 0.15s ease, border-color 0.15s ease;
+  h3 {
+    margin: 0 0 0.5rem;
   }
 
-  .card:hover {
-    transform: translateY(-4px);
-    border-color: hoverColor;
-  }
-
-  .card h2 {
-    margin-top: 0;
-    margin-bottom: 0.75rem;
-    color: #e6e6e6;
-  }
-
-  .card p {
+  p {
     color: #9ca3af;
-    line-height: 1.6;
+    font-size: 0.9rem;
+    line-height: 1.5;
   }
 
-  .tags {
+  .tech {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-top: 1rem;
+    gap: 0.4rem;
+    margin: 0.75rem 0;
   }
 
-  .tag {
-    background: #222733;
-    border: 1px solid #2a2f3a;
+  .tech-badge {
+    font-size: 0.7rem;
+
+    padding: 0.2rem 0.5rem;
     border-radius: 999px;
-    padding: 0.35rem 0.75rem;
-    font-size: 0.85rem;
-    color: #e6e6e6;
+
+    background: #1f2430;
+    border: 1px solid #2a2f3a;
+
+    color: #cbd5e1;
+
+    transition: border-color 0.15s ease, transform 0.15s ease;
   }
 
-  .links {
-    margin-top: 1.5rem;
+  .tech-badge:hover {
+    border-color: var(--hover, #7dd3fc);
+    transform: translateY(-1px);
   }
 
-  .links a {
+  a {
     color: #7dd3fc;
     text-decoration: none;
-    font-weight: 600;
   }
 </style>

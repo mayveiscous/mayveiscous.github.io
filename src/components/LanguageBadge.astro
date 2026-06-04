@@ -1,32 +1,52 @@
 ---
 const { name, years, focus, hoverColor } = Astro.props;
 ---
-<div class="badge">
-  <span class="badge-name">{name}</span>
-  <span class="badge-detail">{years} · {focus}</span>
+
+<div class="badge" style={`--hover: ${hoverColor ?? "#7dd3fc"}`}>
+  <div class="header">
+    <span class="name">{name}</span>
+    <span class="years">{years}</span>
+  </div>
+
+  <div class="focus">{focus}</div>
 </div>
 
 <style>
   .badge {
     background: #171923;
     border: 1px solid #2a2f3a;
-    border-radius: 10px;
-    padding: 0.5rem 0.85rem;
+    border-radius: 12px;
+
+    padding: 0.75rem;
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: 0.35rem;
+
     transition: border-color 0.15s ease;
   }
+
   .badge:hover {
-    border-color: hoverColor;
+    border-color: var(--hover);
   }
-  .badge-name {
+
+  .header {
+    display: flex;
+    justify-content: space-between;
     font-size: 0.85rem;
-    font-weight: 600;
-    color: #e6e6e6;
   }
-  .badge-detail {
+
+  .name {
+    font-weight: 600;
+  }
+
+  .years {
+    color: #9ca3af;
+    font-size: 0.75rem;
+  }
+
+  .focus {
     font-size: 0.75rem;
     color: #9ca3af;
+    line-height: 1.4;
   }
 </style>

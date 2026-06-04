@@ -1,0 +1,24 @@
+---
+const { hoverColor } = Astro.props;
+---
+
+<div class="card" style={`--hover: ${hoverColor ?? "#7dd3fc"}`}>
+  <slot />
+</div>
+
+<style>
+  .card {
+    background: #171923;
+    border: 1px solid #2a2f3a;
+    border-radius: 16px;
+
+    padding: 1rem;
+
+    transition: transform 0.15s ease, border-color 0.15s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-4px);
+    border-color: var(--hover);
+  }
+</style>

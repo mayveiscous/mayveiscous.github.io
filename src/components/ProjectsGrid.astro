@@ -1,0 +1,24 @@
+---
+import ProjectCard from "./ProjectCard.astro";
+
+type Project = {
+  title: string;
+  description: string;
+  tech: string[];
+  github: string;
+  image?: string;
+  hoverColor: string;
+};
+
+const { projects } = Astro.props as {
+  projects: Project[];
+};
+--- 
+
+<section class="right">
+  <div class="projects-grid">
+    {projects.map((p) => (
+      <ProjectCard {...p} />
+    ))}
+  </div>
+</section>
