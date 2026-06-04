@@ -26,9 +26,11 @@ import { projects } from "../data/projects";
 
 <style>
   .layout {
-    width: 100vw;
+    width: 100%;
     min-height: 100vh;
     padding: 3.5rem 2rem;
+    box-sizing: border-box;
+    overflow-x: hidden;
 
     display: grid;
     grid-template-columns: 260px 1px 1fr;
@@ -40,6 +42,7 @@ import { projects } from "../data/projects";
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1.25rem;
+    align-items: stretch;
   }
 
   @media (max-width: 700px) {
