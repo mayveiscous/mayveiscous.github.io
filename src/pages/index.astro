@@ -4,9 +4,9 @@ import LanguageBadge from "../components/LanguageBadge.astro";
 import ProjectCard from "../components/ProjectCard.astro";
 
 const languages = [
-  { name: "Lua",    years: "5 yrs", focus: "game development (ROBLOX), scripting"},
-  { name: "Python", years: "4 yrs", focus: "physics simulations"},
-  { name: "Go",     years: "1 yr", focus: "compilers, VMs, CLI tooling" },
+  { name: "Lua",    years: "5 yrs", focus: "game development (ROBLOX), scripting", hoverColor: "#29BEB0"},
+  { name: "Python", years: "4 yrs", focus: "physics simulations", hoverColor: "#29BEB0"},
+  { name: "Go",     years: "1 yr", focus: "compilers, VMs, CLI tooling", hoverColor: "#29BEB0"},
 ];
 
 const projects = [
@@ -16,6 +16,7 @@ const projects = [
     tech: ["Go", "Assembler", "Virtual Machine"],
     github: "https://github.com/mayveiscous/TPU",
     image: undefined,
+    hoverColor: "#29BEB0",
   },
   {
     title: "TCP/IP Server",
@@ -23,6 +24,7 @@ const projects = [
     tech: ["Go", "TCP/IP", "Networking"],
     github: "https://github.com/mayveiscous/chatserver",
     image: undefined,
+    hoverColor: "#29BEB0",
   },
   {
     title: "Tunascript",
@@ -30,6 +32,7 @@ const projects = [
     tech: ["Go", "Pratt Parsing", "Interpreter"],
     github: "https://github.com/mayveiscous/tunascript",
     image: undefined,
+    hoverColor: "#29BEB0",
   },
 ];
 ---

@@ -1,5 +1,5 @@
 ---
-const { name, years, focus } = Astro.props;
+const { name, years, focus, hoverColor } = Astro.props;
 ---
 <div class="badge">
   <span class="badge-name">{name}</span>
@@ -18,7 +18,7 @@ const { name, years, focus } = Astro.props;
     transition: border-color 0.15s ease;
   }
   .badge:hover {
-    border-color: #7dd3fc;
+    border-color: hoverColor;
   }
   .badge-name {
     font-size: 0.85rem;

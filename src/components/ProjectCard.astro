@@ -1,5 +1,5 @@
 ---
-const { title, description, tech, github } = Astro.props;
+const { title, description, tech, github, hoverColor } = Astro.props;
 ---
 
 <article class="card">
@@ -32,7 +32,7 @@ const { title, description, tech, github } = Astro.props;
 
   .card:hover {
     transform: translateY(-4px);
-    border-color: #7dd3fc;
+    border-color: hoverColor;
   }
 
   .card h2 {
